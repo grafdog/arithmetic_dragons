@@ -25,7 +25,6 @@ class Dragon(Enemy):
     def check_answer(self, answer):
         return answer == self.__answer
 
-
 class GreenDragon(Dragon):
     def __init__(self):
         self._health = 200
@@ -39,8 +38,54 @@ class GreenDragon(Dragon):
         self.set_answer(x + y)
         return self.__quest
 
+class BlackDragon(Dragon):
+    def __init__(self):
+        self._health = 200
+        self._attack = 10
+        self._color = 'черный'
+    def question(self):
+        x = randint(1,100)
+        y = randint(1,100)
+        self.__quest = str(x) + '*' + str(y)
+        self.set_answer(x * y)
+        return self.__quest
+
+class RedDragon(Dragon):
+    def __init__(self):
+        self._health = 200
+        self._attack = 10
+        self._color = 'красный'
+
+    def question(self):
+        x = randint(1,100)
+        y = randint(1,100)
+        self.__quest = str(x) + '-' + str(y)
+        self.set_answer(x - y)
+        return self.__quest
+
+
+class TrollDragon(Dragon):
+    def __init__(self):
+        self._health = 200
+        self._attack = 10
+        self._color = 'troll'
+
+    def question(self):
+        x = randint(1,100)
+        y = 0
+        k = 0
+        self.__quest = 'prostoe li chislo: '+ str(x)
+        for i in range(1,x):
+            if x%i == 0:
+                k +=1
+        if k == 1:
+            y = 1
+        else:
+            y = 0
+        self.set_answer(y)
+        return self.__quest
 #FIXME здесь также должны быть описаны классы RedDragon и BlackDragon
 # красный дракон учит вычитанию, а чёрный -- умножению.
 
 
-enemy_types = [GreenDragon, RedDragon, BlackDragon]
+enemy_types = [TrollDragon, GreenDragon, RedDragon, BlackDragon]
